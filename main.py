@@ -3,6 +3,7 @@ class Product:
     description: str
     price: float
     quantity: int
+
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
@@ -10,7 +11,13 @@ class Product:
         self.quantity = quantity
 
     def __str__(self):
-        return f"Product(name={self.name}, description={self.description}, price={self.price}, quantity={self.quantity})"
+        return (
+            f"Product(name={self.name}, "
+            f"description={self.description}, "
+            f"price={self.price}, "
+            f"quantity={self.quantity})"
+        )
+
 
 product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
 product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
@@ -24,6 +31,7 @@ class Category:
     products: list
     category_count = 0
     product_count = 0
+
     def __init__(self, name, description, products):
         Category.category_count += 1
         Category.product_count += len(products)
@@ -32,7 +40,7 @@ class Category:
         self.products = products
 
     def __str__(self):
-        return f"Category(name={self.name}, description={self.description}, products={self.products})"
+        return f"Category(name={self.name}," f"description={self.description}," f"products={self.products})"
 
 
 category_1 = Category("products", "products for salad", ["tomato", "cucumber", "onion"])
@@ -62,9 +70,11 @@ if __name__ == "__main__":
     print(product3.price)
     print(product3.quantity)
 
-    category1 = Category("Смартфоны",
-                         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-                         [product1, product2, product3])
+    category1 = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        [product1, product2, product3],
+    )
 
     print(category1.name == "Смартфоны")
     print(category1.description)
@@ -72,10 +82,12 @@ if __name__ == "__main__":
     print(category1.category_count)
     print(category1.product_count)
 
-    product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
-    category2 = Category("Телевизоры",
-                         "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
-                         [product4])
+    product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
+    category2 = Category(
+        "Телевизоры",
+        "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
+        [product4],
+    )
 
     print(category2.name)
     print(category2.description)
