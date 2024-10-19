@@ -19,11 +19,6 @@ class Product:
         )
 
 
-product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
-product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
-# print(product_1)
-# print(f"{product_2}\n")
-
 
 class Category:
     name: str
@@ -45,6 +40,11 @@ class Category:
 
 
 if __name__ == "__main__":
+    product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
+    product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
+    print(product_1)
+    print(f"{product_2}\n")
+
     category_1 = Category("products", "products for salad", ["tomato", "cucumber", "onion"])
     category_2 = Category("sweets", "sweet", ["chocolate", "candies"])
     print(category_1)
