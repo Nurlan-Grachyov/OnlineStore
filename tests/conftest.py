@@ -1,10 +1,11 @@
 import pytest
 
-from src.main import Category, Product
+from src.category import Category
+from src.product import Product
 
 
 @pytest.fixture
-def products():
+def product():
     return Product("onion", "green onion from grandmom`s garden", 35, 10)
 
 
