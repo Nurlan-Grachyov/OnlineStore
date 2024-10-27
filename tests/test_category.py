@@ -40,8 +40,8 @@ def test_category(category_1, product):
 
     assert len(category.products) == 2
     category.products = [product_3, product_4]
-    assert category.products[0] == 'Название продукта : apples, цена : 200 рублей, Остаток: 25 штук.'
-    assert category.products[1] == 'Название продукта : pears, цена : 250 рублей, Остаток: 30 штук.'
+    assert category.products[0] == "Название продукта : apples, цена : 200 рублей, Остаток: 25 штук."
+    assert category.products[1] == "Название продукта : pears, цена : 250 рублей, Остаток: 30 штук."
 
     product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
     product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
@@ -49,4 +49,3 @@ def test_category(category_1, product):
     list_cat = list(cat)
     assert list_cat[0] == product_1
     assert list_cat[1] == product_2
-
