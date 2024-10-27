@@ -34,6 +34,9 @@ class Category:
     def products(self, new_products):
         self.__products = new_products
 
+    def __repr__(self):
+        return  f"{self.__class__.__name__}('{self.name}', '{self.description}')"
+
     def __str__(self):
         products_str = ", ".join(str(product) for product in self.__products)
         return f"Category(name={self.name}, description={self.description}, products={[{products_str}]})"
@@ -44,11 +47,11 @@ if __name__ == "__main__":
     product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
     category_1 = Category("products", "products for salad", [product_1, product_2])
     category_2 = Category("shoes", "summer shoes", [])
-
-    print(category_2)
-    product_3 = Product("lettuce", "fresh lettuce", 50, 15)
-    category_1.add_product(product_3)
-    print(category_2.return_product)
-    print(Category.category_count)
+    print(category_1)
+    # product_3 = Product("lettuce", "fresh lettuce", 50, 15)
+    # category_1.add_product(product_3)
+    # print(category_2.return_product)
+    # print(Category.category_count)
     # print(category_1.return_product)
-    # print(category_1.products)
+    # print(repr(category_1))
+

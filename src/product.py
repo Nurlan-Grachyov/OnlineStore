@@ -29,6 +29,9 @@ class Product:
         else:
             self.__price = new_price
 
+    def __repr__(self):
+        return  f"{self.__class__.__name__}('{self.name}', '{self.description} {self.price} {self.quantity}')"
+
     def __str__(self):
         if self.__price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
@@ -41,18 +44,16 @@ class Product:
 
 
 if __name__ == "__main__":
-    # product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
-    # product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
+    product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
+    product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
     # print(product_1)
-    # print(f"{product_2}\n")
-    product_1 = {
+    product_3 = {
         "name": "Помидоры",
         "description": "Помидоры красные, вкусные, не дорого",
         "price": 180,
         "quantity": 10,
     }
-    product_add = Product.new_product(product_1)
+    product_add = Product.new_product(product_3)
     print(product_add)
-    # product_add.price = -5
-    product_add.price = 20
-    print(product_add)
+    product_2.price = 20
+    # print(product_2)
