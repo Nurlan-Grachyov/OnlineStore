@@ -15,6 +15,13 @@ class Category:
         self.description = description
         self.__products = products
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.name}', '{self.description}')"
+
+    def __str__(self):
+        products_str = ", ".join(str(product) for product in self.__products)
+        return f"Category(name={self.name}, description={self.description}, products={[{products_str}]})"
+
     def add_product(self, product):
         self.__products.append(product)
         Category.product_count += 1
@@ -29,13 +36,6 @@ class Category:
     @products.setter
     def products(self, new_products):
         self.__products = new_products
-
-    def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}', '{self.description}')"
-
-    def __str__(self):
-        products_str = ", ".join(str(product) for product in self.__products)
-        return f"Category(name={self.name}, description={self.description}, products={[{products_str}]})"
 
 
 if __name__ == "__main__":

@@ -10,6 +10,19 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.name}', '{self.description} {self.price} {self.quantity}')"
+
+    def __str__(self):
+        if self.__price <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+        return (
+            f"Product(name={self.name}, "
+            f"description={self.description}, "
+            f"price={self.__price}, "
+            f"quantity={self.quantity})"
+        )
+
     @classmethod
     def new_product(cls, product):
         name = product["name"]
@@ -28,19 +41,6 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
         else:
             self.__price = new_price
-
-    def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}', '{self.description} {self.price} {self.quantity}')"
-
-    def __str__(self):
-        if self.__price <= 0:
-            print("Цена не должна быть нулевая или отрицательная")
-        return (
-            f"Product(name={self.name}, "
-            f"description={self.description}, "
-            f"price={self.__price}, "
-            f"quantity={self.quantity})"
-        )
 
 
 if __name__ == "__main__":
