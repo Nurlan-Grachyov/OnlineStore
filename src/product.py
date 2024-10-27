@@ -16,12 +16,12 @@ class Product:
     def __str__(self):
         if self.__price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
-        return (
-            f"Product(name={self.name}, "
-            f"description={self.description}, "
-            f"price={self.__price}, "
-            f"quantity={self.quantity})"
-        )
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        sum_product = self.price * self.quantity + other.price * other.quantity
+        print(type(sum_product))
+        return sum_product
 
     @classmethod
     def new_product(cls, product):
@@ -54,6 +54,7 @@ if __name__ == "__main__":
         "quantity": 10,
     }
     product_add = Product.new_product(product_3)
-    print(product_add)
-    product_2.price = 20
+    # print(product_add)
+    # product_2.price = 20
     # print(product_2)
+    print(product_1 + product_2)

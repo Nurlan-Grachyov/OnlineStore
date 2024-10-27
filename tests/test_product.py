@@ -21,6 +21,7 @@ def test_new_product():
 
 def test_price_setter():
     product = Product("Orange", "Fresh orange", 1.5, 15)
+    assert repr(product) == "Product('Orange', 'Fresh orange 1.5 15')"
     product.price = 3.0
     assert product.price == 3.0
 
@@ -30,12 +31,7 @@ def test_price_setter():
 
 def test_str(capsys):
     product = Product("Orange", "Fresh orange", 1.5, 15)
-    expected_data = (
-        f"Product(name={product.name}, "
-        f"description={product.description}, "
-        f"price={product.price}, "
-        f"quantity={product.quantity})"
-    )
+    expected_data = "Orange, 1.5 руб. Остаток: 15 шт."
     assert str(product) == expected_data
 
     product1 = Product("apples", "Fresh apples", -7.5, 15)
@@ -43,3 +39,12 @@ def test_str(capsys):
 
     message = capsys.readouterr()
     assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+
+
+def test_add():
+    product = Product("Orange", "Fresh orange", 20, 5)
+    product1 = Product("apples", "Fresh apples", 10, 15)
+    assert product + product1 == 250
+
+    product1 = Product("apples", "Fresh apples", -7.5, 15)
+    str(product1)

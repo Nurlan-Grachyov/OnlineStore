@@ -11,6 +11,7 @@ def test_category_init(category_1, product):
     assert category.description == "winter shoes"
     assert category.category_count == 2
     assert category.product_count == 4
+    assert repr(category) == f"Category('shoes', 'winter shoes')"
 
     expected_product_1 = (
         f"Название продукта : {product1.name}, цена : {product1.price} рублей, Остаток: {product1.quantity} штук."
@@ -31,9 +32,5 @@ def test_category_init(category_1, product):
     product1 = Product("Товар1", 100, 10, 45)
     product2 = Product("Товар2", 200, 5, 46)
     category = Category("Электроника", "Различные электронные устройства", [product1, product2])
-    expected_str = (
-        "Category(name=Электроника, description=Различные электронные устройства, "
-        "products=[{'Product(name=Товар1, description=100, price=10, quantity=45), "
-        "Product(name=Товар2, description=200, price=5, quantity=46)'}])"
-    )
+    expected_str = f"Электроника, количество продуктов: 2 шт."
     assert str(category) == expected_str
