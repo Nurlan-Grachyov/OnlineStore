@@ -40,7 +40,7 @@ class Category:
 class Sort:
     def __init__(self, product_of_category):
         self.product = product_of_category
-        self.index = len(product_of_category)
+        self.index = 0
 
     def __iter__(self):
         self.index = -1
