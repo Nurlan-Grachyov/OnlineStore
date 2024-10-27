@@ -31,7 +31,7 @@ class Category:
         self.__products = new_products
 
     def __repr__(self):
-        return  f"{self.__class__.__name__}('{self.name}', '{self.description}')"
+        return f"{self.__class__.__name__}('{self.name}', '{self.description}')"
 
     def __str__(self):
         products_str = ", ".join(str(product) for product in self.__products)
@@ -50,4 +50,3 @@ if __name__ == "__main__":
     # print(Category.category_count)
     print(type(category_1.products[-1]))
     # print(repr(category_1))
-

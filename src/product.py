@@ -30,7 +30,7 @@ class Product:
             self.__price = new_price
 
     def __repr__(self):
-        return  f"{self.__class__.__name__}('{self.name}', '{self.description} {self.price} {self.quantity}')"
+        return f"{self.__class__.__name__}('{self.name}', '{self.description} {self.price} {self.quantity}')"
 
     def __str__(self):
         if self.__price <= 0:
