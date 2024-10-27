@@ -15,20 +15,16 @@ class Category:
         self.description = description
         self.__products = products
 
-    @property
-    def return_product(self):
-        return [
-            f"Название продукта : {product.name}, цена : {product.price} рублей, Остаток: {product.quantity} штук."
-            for product in self.__products
-        ]
-
     def add_product(self, product):
         self.__products.append(product)
         Category.product_count += 1
 
     @property
     def products(self):
-        return self.__products
+        return [
+            f"Название продукта : {product.name}, цена : {product.price} рублей, Остаток: {product.quantity} штук."
+            for product in self.__products
+        ]
 
     @products.setter
     def products(self, new_products):
@@ -47,11 +43,11 @@ if __name__ == "__main__":
     product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
     category_1 = Category("products", "products for salad", [product_1, product_2])
     category_2 = Category("shoes", "summer shoes", [])
-    print(category_1)
-    # product_3 = Product("lettuce", "fresh lettuce", 50, 15)
-    # category_1.add_product(product_3)
-    # print(category_2.return_product)
+    # print(type(category_1.products))
+    product_3 = Product("lettuce", "fresh lettuce", 50, 15)
+    category_1.add_product(product_3)
+    # print(type(category_1.products[-1]))
     # print(Category.category_count)
-    # print(category_1.return_product)
+    print(type(category_1.products[-1]))
     # print(repr(category_1))
 

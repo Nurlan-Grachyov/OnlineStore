@@ -19,14 +19,14 @@ def test_category_init(category_1, product):
         f"Название продукта : {product2.name}, цена : {product2.price} рублей, Остаток: {product2.quantity} штук."
     )
 
-    assert category.return_product[0] == expected_product_1
-    assert category.return_product[1] == expected_product_2
+    assert category.products[0] == expected_product_1
+    assert category.products[1] == expected_product_2
 
     product3 = Product("summer dress", 100, 345, 25)
     category.add_product(product3)
 
     assert len(category.products) == 3
-    assert category.products[-1].name == "summer dress"
+    assert "summer dress" in category.products[-1]
 
     product1 = Product("Товар1", 100, 10, 45)
     product2 = Product("Товар2", 200, 5, 46)
