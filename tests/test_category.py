@@ -1,8 +1,10 @@
+import pytest
+
 from src.category import Category, Sort
-from src.product import Product
+from src.product import Car, Product
 
 
-def test_category(category_1, product):
+def test_category(category_1, product, capsys):
     product1 = Product("boots with fur", 100, 10, 15)
     product2 = Product("winter jacket", 150, 5, 15)
     category = Category("shoes", "winter shoes", [product1, product2])
@@ -49,3 +51,9 @@ def test_category(category_1, product):
     list_cat = list(cat)
     assert list_cat[0] == product_1
     assert list_cat[1] == product_2
+
+    product_car_1 = Car("BMW", 10000, 5, "black")
+    with pytest.raises(TypeError):
+        category.add_product(product_car_1)
+        message = capsys.readouterr()
+        assert message.out.strip() == "Нельзя добавлять разные классы"
