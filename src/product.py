@@ -95,7 +95,7 @@ if __name__ == "__main__":
     # print(product_add)
     # product_2.price = 20
     # print(product_2)
-    # product_phone_1 = Smartphone("xiaomi", "xiaomi 8gb", 500, 20, "Good", "note 8 pro", '128 gb', "blue")
-    # product_phone_2 = Smartphone("infinix", "infinix 128/8", 700, 30, "Good", "Note 30", '128 gb', "Green")
-    # res = product_phone_1 + product_2
-    # print(res)
+    product_phone_1 = Smartphone("xiaomi", "xiaomi 8gb", 500, 20, "Good", "note 8 pro", '128 gb', "blue")
+    product_phone_2 = Smartphone("infinix", "infinix 128/8", 700, 30, "Good", "Note 30", '128 gb', "Green")
+    res = product_phone_1 + product_phone_2
+    print(res)

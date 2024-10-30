@@ -1,4 +1,4 @@
-from src.product import Product, Smartphone
+from src.product import Product, Smartphone, Car
 
 
 class Category:
@@ -26,8 +26,7 @@ class Category:
             self.__products.append(product)
             Category.product_count += 1
         else:
-            print("Нельзя добавлять разные классы")
-            raise TypeError
+            raise TypeError("Нельзя добавлять разные классы")
 
     @property
     def products(self):
@@ -61,10 +60,10 @@ class Sort:
 if __name__ == "__main__":
     product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
     product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
-    product_phone_1 = Smartphone("xiaomi", "xiaomi 8gb", 500, 20, "Good", "note 8 pro", "128 gb", "blue")
+    product_car_1 = Car("BMW", 10000, 5, "black")
     category_1 = Category("products", "products for salad", [product_1, product_2])
     # print(category_1)
-    category_1.add_product(product_phone_1)
+    category_1.add_product(product_car_1)
     # print(Category.category_count)
     print(repr(category_1))
     cat = Sort([product_1, product_2])
