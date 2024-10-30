@@ -1,4 +1,4 @@
-from src.product import Product
+from src.product import Product, Smartphone
 
 
 class Category:
@@ -22,8 +22,12 @@ class Category:
         return f"{self.name}, количество продуктов: {len(self.__products)} шт."
 
     def add_product(self, product):
-        self.__products.append(product)
-        Category.product_count += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            print('Нельзя добавлять разные классы')
+            raise TypeError
 
     @property
     def products(self):
@@ -57,14 +61,12 @@ class Sort:
 if __name__ == "__main__":
     product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
     product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
-    # print(product_1)
+    product_phone_1 = Smartphone("xiaomi", "xiaomi 8gb", 500, 20, "Good", "note 8 pro", '128 gb', "blue")
     category_1 = Category("products", "products for salad", [product_1, product_2])
     # print(category_1)
-    product_3 = Product("lettuce", "fresh lettuce", 50, 15)
-    category_1.add_product(product_3)
+    category_1.add_product(product_phone_1)
     # print(Category.category_count)
-    # print(repr(category_1))
+    print(repr(category_1))
     cat = Sort([product_1, product_2])
     # print(cat.product)
-    for prod in cat:
-        print(prod)
+

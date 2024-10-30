@@ -20,7 +20,6 @@ class Product:
 
     def __add__(self, other):
         sum_product = self.price * self.quantity + other.price * other.quantity
-        print(type(sum_product))
         return sum_product
 
     @classmethod
@@ -43,6 +42,35 @@ class Product:
             self.__price = new_price
 
 
+class Smartphone(Product):
+    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+    def __add__(self, other):
+        if type(other) is __class__:
+            summ = self.price + other.price
+            return summ
+        else:
+            raise TypeError
+
+class LawnGrass(Product):
+    def __init__(self, name, description, price, quantity, country, germination_period, color):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
+
+    def __add__(self, other):
+        if type(other) is __class__:
+            summ = self.price + other.price
+            return summ
+        else:
+            raise TypeError
+
 if __name__ == "__main__":
     product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
     product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
@@ -54,7 +82,10 @@ if __name__ == "__main__":
         "quantity": 10,
     }
     product_add = Product.new_product(product_3)
-    # print(product_add)
+    print(product_add)
     # product_2.price = 20
     # print(product_2)
-    print(product_1 + product_2)
+    product_phone_1 = Smartphone("xiaomi", "xiaomi 8gb", 500, 20, "Good", "note 8 pro", '128 gb', "blue")
+    product_phone_2 = Smartphone("infinix", "infinix 128/8", 700, 30, "Good", "Note 30", '128 gb', "Green")
+    res = product_phone_1 + product_2
+    print(res)
