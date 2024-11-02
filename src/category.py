@@ -48,6 +48,8 @@ class Category(Abstract):
 
     @property
     def products(self):
+        if not isinstance(self.__products, list):
+            raise TypeError("__products должен быть списком.")
         return [
             f"Название продукта : {product.name}, цена : {product.price} рублей, Остаток: {product.quantity} штук."
             for product in self.__products
@@ -77,14 +79,15 @@ class Sort:
 
 if __name__ == "__main__":
     product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
-    # product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
-    # product_car_1 = Car("BMW", 10000, 5, "black")
-    # category_1 = Category("products", "products for salad", [product_1, product_2])
+    product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
+    category_1 = Category("products", "products for salad", [product_1])
     # print(category_1)
-    # category_1.add_product(product_car_1)
     # print(Category.category_count)
     # print(repr(category_1))
     # cat = Sort([product_1, product_2])
     # print(cat.product)
-    order = Order(product_1, 20)
-    print(order.product)
+    # order = Order(product_1, 20)
+    # print(order.product)
+    category_1.products = product_2
+    # category_1.add_product(product_2)
+    print(category_1.products)
