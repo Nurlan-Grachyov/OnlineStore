@@ -13,7 +13,7 @@ def test_category(category_1, product, capsys):
     assert category.description == "winter shoes"
     assert category.category_count == 2
     assert category.product_count == 4
-    assert repr(category) == f"Category('shoes', 'winter shoes')"
+    assert repr(category) == f"Category('shoes', 'winter shoes')"  # noqa F541
 
     expected_product_1 = (
         f"Название продукта : {product1.name}, цена : {product1.price} рублей, Остаток: {product1.quantity} штук."
@@ -34,7 +34,7 @@ def test_category(category_1, product, capsys):
     product1 = Product("Товар1", 100, 10, 45)
     product2 = Product("Товар2", 200, 5, 46)
     category = Category("Электроника", "Различные электронные устройства", [product1, product2])
-    expected_str = f"Электроника, количество продуктов: 2 шт."
+    expected_str = f"Электроника, количество продуктов: 2 шт."  # noqa F541
     assert str(category) == expected_str
 
     product_3 = Product("apples", "red apples from Azerbaijan", 200, 25)
