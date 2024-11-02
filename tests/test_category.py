@@ -1,6 +1,6 @@
 import pytest
 
-from src.category import Abstract, Category, Order, Sort
+from src.category import Category, Order, Sort
 from src.product import Car, Product
 
 

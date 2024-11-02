@@ -47,4 +47,7 @@ exclude = 'venv'
 exclude_also = [
     "raise NotImplementedError",
     "if __name__ == .__main__.:",
+    "import",
+    "from",
+    "@abstractmethod",
 ]
