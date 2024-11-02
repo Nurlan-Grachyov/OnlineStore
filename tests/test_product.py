@@ -1,6 +1,6 @@
 import pytest
 
-from src.product import Car, LawnGrass, Product, Smartphone
+from src.product import BaseProduct, Car, LawnGrass, Product, Smartphone
 
 
 def test_products_init(product):
@@ -23,7 +23,8 @@ def test_new_product():
 
 def test_price_setter():
     product = Product("Orange", "Fresh orange", 1.5, 15)
-    assert repr(product) == "Product('Orange', 'Fresh orange 1.5 15')"
+    assert repr(product) == "Product('Orange', 'Fresh orange', 1.5, 15)"
+
     product.price = 3.0
     assert product.price == 3.0
 
@@ -31,16 +32,19 @@ def test_price_setter():
     assert product.price == 3.0
 
 
-def test_str(capsys):
+def test_str():
     product = Product("Orange", "Fresh orange", 1.5, 15)
     expected_data = "Orange, 1.5 руб. Остаток: 15 шт."
     assert str(product) == expected_data
 
-    product1 = Product("apples", "Fresh apples", -7.5, 15)
+
+def test_print(capsys):
+    product1 = Product("apples", "Fresh apples", 7.5, 15)
+    product1.price = -10
     str(product1)
 
     message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+    assert message.out.strip().split("\n")[-1] == "Цена не должна быть нулевая или отрицательная"
 
 
 def test_add():
@@ -97,3 +101,27 @@ def test_car():
     assert product_car_1.price == 10000
     assert product_car_1.quantity == 5
     assert product_car_1.color == "black"
+
+
+def test_mixin_product(capsys):
+    Product("apples", "Fresh apples", 7.5, 15)
+
+    message = capsys.readouterr()
+    assert message.out.strip() == "Product('apples', 'Fresh apples', 7.5, 15)"
+
+
+def test_base_product():
+    class Employee(BaseProduct):
+
+        def __init__(self, name, surname, pay):
+            self._name = name
+            self.__surname = surname
+            self.pay = pay
+
+        def __add__(self, other):
+            return self.pay + other.pay
+
+    emp_1 = Employee("Ivan", "Ivanov", 50_000)
+    emp_2 = Employee("Nurlan", "Grachev", 100_000)
+
+    assert emp_1 + emp_2 == 150_000

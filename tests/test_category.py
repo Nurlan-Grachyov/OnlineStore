@@ -1,6 +1,6 @@
 import pytest
 
-from src.category import Category, Sort
+from src.category import Abstract, Category, Order, Sort
 from src.product import Car, Product
 
 
@@ -57,3 +57,9 @@ def test_category(category_1, product, capsys):
         category.add_product(product_car_1)
         message = capsys.readouterr()
         assert message.out.strip() == "Нельзя добавлять разные классы"
+
+    product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
+    order = Order(product_1, 20)
+    message = capsys.readouterr()
+    assert message.out.strip().split("\n")[-1] == "Product('tomato', 'red tomato from Azerbaijan', 150, 10)"
+    assert repr(order) == "tomato, куплено - 20 штук, итоговая стоимость - 3000 рублей"
