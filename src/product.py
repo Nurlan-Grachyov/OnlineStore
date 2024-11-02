@@ -1,4 +1,19 @@
-class Product:
+from abc import ABC, abstractmethod
+
+class MixinProduct:
+    def __init__(self):
+        print(str(self))
+
+    def __str__(self):
+        return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})"
+
+class BaseProduct(ABC):
+    @abstractmethod
+    def __add__(self, other):
+        pass
+
+
+class Product(MixinProduct, BaseProduct):
     name: str
     description: str
     price: float
@@ -9,6 +24,8 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
+
 
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', '{self.description} {self.price} {self.quantity}')"
@@ -92,10 +109,10 @@ if __name__ == "__main__":
         "quantity": 10,
     }
     product_add = Product.new_product(product_3)
-    # print(product_add)
+    print(product_add)
     # product_2.price = 20
     # print(product_2)
-    product_phone_1 = Smartphone("xiaomi", "xiaomi 8gb", 500, 20, "Good", "note 8 pro", '128 gb', "blue")
-    product_phone_2 = Smartphone("infinix", "infinix 128/8", 700, 30, "Good", "Note 30", '128 gb', "Green")
-    res = product_phone_1 + product_phone_2
-    print(res)
+    # product_phone_1 = Smartphone("xiaomi", "xiaomi 8gb", 500, 20, "Good", "note 8 pro", "128 gb", "blue")
+    # product_phone_2 = Smartphone("infinix", "infinix 128/8", 700, 30, "Good", "Note 30", "128 gb", "Green")
+    # res = product_phone_1 + product_phone_2
+    # print(res)

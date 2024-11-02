@@ -45,15 +45,15 @@ def test_category(category_1, product, capsys):
     assert category.products[0] == "Название продукта : apples, цена : 200 рублей, Остаток: 25 штук."
     assert category.products[1] == "Название продукта : pears, цена : 250 рублей, Остаток: 30 штук."
 
-    # product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
-    # product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
-    # cat = Sort([product_1, product_2])
-    # list_cat = list(cat)
-    # assert list_cat[0] == product_1
-    # assert list_cat[1] == product_2
-    #
-    # product_car_1 = Car("BMW", 10000, 5, "black")
-    # with pytest.raises(TypeError):
-    #     category.add_product(product_car_1)
-    #     message = capsys.readouterr()
-    #     assert message.out.strip() == "Нельзя добавлять разные классы"
+    product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
+    product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
+    cat = Sort([product_1, product_2])
+    list_cat = list(cat)
+    assert list_cat[0] == product_1
+    assert list_cat[1] == product_2
+
+    product_car_1 = Car("BMW", 10000, 5, "black")
+    with pytest.raises(TypeError):
+        category.add_product(product_car_1)
+        message = capsys.readouterr()
+        assert message.out.strip() == "Нельзя добавлять разные классы"
