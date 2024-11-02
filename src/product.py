@@ -1,11 +1,13 @@
 from abc import ABC, abstractmethod
 
+
 class MixinProduct:
     def __init__(self):
-        print(str(self))
+        print(repr(self))
 
-    def __str__(self):
+    def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})"
+
 
 class BaseProduct(ABC):
     @abstractmethod
@@ -13,7 +15,7 @@ class BaseProduct(ABC):
         pass
 
 
-class Product(MixinProduct, BaseProduct):
+class Product(BaseProduct, MixinProduct):
     name: str
     description: str
     price: float
@@ -26,9 +28,8 @@ class Product(MixinProduct, BaseProduct):
         self.quantity = quantity
         super().__init__()
 
-
-    def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}', '{self.description} {self.price} {self.quantity}')"
+    # def __repr__(self):
+    #     return f"{self.__class__.__name__}('{self.name}', '{self.description} {self.price} {self.quantity}')"
 
     def __str__(self):
         if self.__price <= 0:

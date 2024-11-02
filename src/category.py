@@ -1,7 +1,25 @@
+from abc import ABC, abstractmethod
+
 from src.product import Product, Smartphone, Car
 
 
-class Category:
+class Abstract(ABC):
+    @abstractmethod
+    def __repr__(self):
+        pass
+
+
+class Order(Abstract):
+    def __init__(self, product, buy_count):
+        self.product = product
+        self.buy_count = buy_count
+        self.total_price = self.buy_count * product.price
+
+    def __repr__(self):
+        return f"{self.product.name}, куплено - {self.buy_count}, итоговая стоимость - {self.total_price}"
+
+
+class Category(Abstract):
     name: str
     description: str
     products: list
@@ -63,8 +81,10 @@ if __name__ == "__main__":
     product_car_1 = Car("BMW", 10000, 5, "black")
     category_1 = Category("products", "products for salad", [product_1, product_2])
     # print(category_1)
-    category_1.add_product(product_car_1)
+    # category_1.add_product(product_car_1)
     # print(Category.category_count)
-    print(repr(category_1))
+    # print(repr(category_1))
     cat = Sort([product_1, product_2])
     # print(cat.product)
+    order = Order(product_1, 20)
+    print(order)
