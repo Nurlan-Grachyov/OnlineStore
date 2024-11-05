@@ -2,14 +2,6 @@ from abc import ABC, abstractmethod
 
 from src.product import Product
 
-class NoProducts(Exception):
-
-    def __init__(self, *args, **kwargs):
-        self.message = args[0] if args else 'Error'
-
-    def __str__(self):
-        return self.message
-
 class Abstract(ABC):
     @abstractmethod
     def __repr__(self):
