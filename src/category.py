@@ -2,6 +2,13 @@ from abc import ABC, abstractmethod
 
 from src.product import Product
 
+class NoProducts(Exception):
+
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else 'Error'
+
+    def __str__(self):
+        return self.message
 
 class Abstract(ABC):
     @abstractmethod
@@ -27,11 +34,18 @@ class Category(Abstract):
     product_count = 0
 
     def __init__(self, name, description, products):
-        Category.category_count += 1
-        Category.product_count += len(products)
-        self.name = name
-        self.description = description
-        self.__products = products
+        try:
+            Category.category_count += 1
+            Category.product_count += len(products)
+            self.name = name
+            self.description = description
+            self.__products = products
+            if len(self.__products) == 0:
+                raise(NoProducts)
+        except NoProducts as e:
+            print(e)
+            print("Отсутствуют продукты в списке")
+
 
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', '{self.description}')"
@@ -48,8 +62,6 @@ class Category(Abstract):
 
     @property
     def products(self):
-        if not isinstance(self.__products, list):
-            raise TypeError("__products должен быть списком.")
         return [
             f"Название продукта : {product.name}, цена : {product.price} рублей, Остаток: {product.quantity} штук."
             for product in self.__products
@@ -58,6 +70,12 @@ class Category(Abstract):
     @products.setter
     def products(self, new_products):
         self.__products = new_products
+
+    def avg_price(self):
+        try:
+            return sum([product.price for product in self.__products]) // len(self.__products)
+        except ZeroDivisionError:
+            return 0
 
 
 class Sort:
@@ -78,13 +96,11 @@ class Sort:
 
 
 if __name__ == "__main__":
-    product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
+    product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 0)
     product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
-    category_1 = Category("products", "products for salad", [product_1])
-    print(category_1)
-    print(Category.category_count)
-    print(repr(category_1))
-    cat = Sort([product_1, product_2])
-    print(cat.product)
+    category_1 = Category("products", "products for salad", [])
+    # cat = Sort([product_1, product_2])
+    # print(cat.product)
     order = Order(product_1, 20)
-    print(order.product)
+    print(order)
+    # print(category_1.avg_price())

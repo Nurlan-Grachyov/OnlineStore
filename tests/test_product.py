@@ -125,3 +125,8 @@ def test_base_product():
     emp_2 = Employee("Nurlan", "Grachev", 100_000)
 
     assert emp_1 + emp_2 == 150_000
+
+
+def test_raise():
+    with pytest.raises(ValueError):
+        product_1 = Product("cucumber", "cucumber from Azerbaijan", 100, 0) # noqa F841
