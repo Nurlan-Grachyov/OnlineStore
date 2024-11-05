@@ -67,7 +67,7 @@ class Category(Abstract):
     def products(self, new_products):
         self.__products = new_products
 
-    def avg_price(self):
+    def middle_price(self):
         try:
             return sum([product.price for product in self.__products]) // len(self.__products)
         except ZeroDivisionError:
@@ -113,4 +113,4 @@ if __name__ == "__main__":
     # print(cat.product)
     # order = Order(product_1, 20)
     # print(order)
-    # print(category_1.avg_price())
+    # print(category_1.middle_price())

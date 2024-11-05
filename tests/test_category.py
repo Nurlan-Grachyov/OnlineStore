@@ -65,10 +65,10 @@ def test_category(category_1, product, capsys):
     assert repr(order) == "tomato, куплено - 20 штук, итоговая стоимость - 3000 рублей"
 
     category_1 = Category("products", "products for salad", [product_1, product_2])
-    assert category_1.avg_price() == 125
+    assert category_1.middle_price() == 125
 
     category_1 = Category("products", "products for salad", [])
-    assert category_1.avg_price() == 0
+    assert category_1.middle_price() == 0
 
     with pytest.raises(NoProducts):
         try:
@@ -79,6 +79,6 @@ def test_category(category_1, product, capsys):
             raise NoProducts
 
     with pytest.raises(NoProducts) as exc_info:
-        raise NoProducts()
+        raise NoProducts
 
     assert str(exc_info.value) == "Error"
