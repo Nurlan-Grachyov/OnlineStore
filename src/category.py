@@ -2,6 +2,16 @@ from abc import ABC, abstractmethod
 
 from src.product import Product
 
+
+class NoProducts(Exception):
+
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else "Error"
+
+    def __str__(self):
+        return self.message
+
+
 class Abstract(ABC):
     @abstractmethod
     def __repr__(self):
@@ -26,18 +36,11 @@ class Category(Abstract):
     product_count = 0
 
     def __init__(self, name, description, products):
-        try:
-            Category.category_count += 1
-            Category.product_count += len(products)
-            self.name = name
-            self.description = description
-            self.__products = products
-            if len(self.__products) == 0:
-                raise(NoProducts)
-        except NoProducts as e:
-            print(e)
-            print("Отсутствуют продукты в списке")
-
+        Category.category_count += 1
+        Category.product_count += len(products)
+        self.name = name
+        self.description = description
+        self.__products = products
 
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', '{self.description}')"
@@ -46,6 +49,7 @@ class Category(Abstract):
         return f"{self.name}, количество продуктов: {len(self.__products)} шт."
 
     def add_product(self, product):
+        # try:
         if isinstance(product, Product):
             self.__products.append(product)
             Category.product_count += 1
@@ -88,11 +92,25 @@ class Sort:
 
 
 if __name__ == "__main__":
-    product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 0)
-    product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
-    category_1 = Category("products", "products for salad", [])
+    try:
+        product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
+        category_1 = Category("products", "products for salad", [])
+        category_1.add_product(product_1)
+    except ValueError:
+        try:
+            raise NoProducts
+        except NoProducts as e:
+            print(e)
+            print("Кол-во товара не может быть равным нулю")
+    else:
+        print("Товар добавлен в category")
+    finally:
+        print("Операция добавления закончена")
+
+    # product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
+    # category_1 = Category("products", "products for salad", [])
     # cat = Sort([product_1, product_2])
     # print(cat.product)
-    order = Order(product_1, 20)
-    print(order)
+    # order = Order(product_1, 20)
+    # print(order)
     # print(category_1.avg_price())

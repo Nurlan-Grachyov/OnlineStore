@@ -129,4 +129,4 @@ def test_base_product():
 
 def test_raise():
     with pytest.raises(ValueError):
-        product_1 = Product("cucumber", "cucumber from Azerbaijan", 100, 0) # noqa F841
+        product_1 = Product("cucumber", "cucumber from Azerbaijan", 100, 0)  # noqa F841

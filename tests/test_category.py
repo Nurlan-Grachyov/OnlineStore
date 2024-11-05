@@ -1,6 +1,6 @@
 import pytest
 
-from src.category import Category, Order, Sort
+from src.category import Category, NoProducts, Order, Sort
 from src.product import Car, Product
 
 
@@ -69,3 +69,16 @@ def test_category(category_1, product, capsys):
 
     category_1 = Category("products", "products for salad", [])
     assert category_1.avg_price() == 0
+
+    with pytest.raises(NoProducts):
+        try:
+            product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 0)
+            category_1 = Category("products", "products for salad", [])
+            category_1.add_product(product_1)
+        except ValueError:
+            raise NoProducts
+
+    with pytest.raises(NoProducts) as exc_info:
+        raise NoProducts()
+
+    assert str(exc_info.value) == "Error"
