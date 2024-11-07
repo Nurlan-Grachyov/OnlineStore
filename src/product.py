@@ -103,4 +103,3 @@ if __name__ == "__main__":
     product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
     product_2.price = 20
     print(product_2)
-
