@@ -106,11 +106,3 @@ if __name__ == "__main__":
         print("Товар добавлен в category")
     finally:
         print("Операция добавления закончена")
-
-    # product_2 = Product("cucumber", "cucumber from Azerbaijan", 100, 20)
-    # category_1 = Category("products", "products for salad", [])
-    # cat = Sort([product_1, product_2])
-    # print(cat.product)
-    # order = Order(product_1, 20)
-    # print(order)
-    # print(category_1.middle_price())
